@@ -4,7 +4,6 @@ import Shelf from './Shelf'
 class Shelves extends Component {
     render() {
         return (
-            <div>
                 <div className="list-books-content">
                     <div>
                         <Shelf shelves={[{ name: 'Currently Reading' }]} />
@@ -12,7 +11,6 @@ class Shelves extends Component {
                         <Shelf shelves={[{ name: 'Read' }]} />
                     </div>
                 </div>
-            </div>
         )
     }
 }

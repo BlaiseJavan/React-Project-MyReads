@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Shelves from './Shelves'
-import AddButton from './AddBookButton'
+import { Link } from 'react-router-dom'
 
 class MainPage extends Component {
     render() {
@@ -11,7 +11,9 @@ class MainPage extends Component {
                         <h1>MyReads</h1>
                     </div>
                     <Shelves />
-                    <AddButton addBk={this.props.addBook} />
+                    {/* <div className="open-search"> */}
+                        <Link className="open-search" to='/search' >Add a book</Link>
+                    {/* </div> */}
                 </div>
             </div>
         )
