@@ -14,7 +14,7 @@ class SearchPage extends Component {
     updateQuery = (event) => {
         this.setState({ value: event.target.value })
 
-        BooksAPI.search(event.target.value, 20)
+        BooksAPI.search(event.target.value)
             .then(books => {
                 if (books) {
                     for (let index = 0; index < books.length; index++) {

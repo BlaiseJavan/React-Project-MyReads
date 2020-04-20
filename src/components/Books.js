@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Books = ({ books, changeShelf }) => {
 
-    const allBooks = books.length
+    let allBooks = books.length
 
     return (
         <div>
