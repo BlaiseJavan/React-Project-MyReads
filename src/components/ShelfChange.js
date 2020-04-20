@@ -1,22 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-class ShelfChange extends Component {
-    render() {
+const ShelfChange = ({ book, changeBookShelf, currentlyReading, wantToRead, read, none }) => {
 
-        const { book, changeBookShelf, currentReading, wantToRead, read, none } = this.props;
+    return (
+        <div className="book-shelf-changer">
+            <select onChange={(event) => changeBookShelf(event.target.value, book)} >
+                <option className="moveTo" value='move' disabled>Move to...</option>
+                <option className={currentlyReading} value="currentlyReading">Currently Reading</option>
+                <option className={wantToRead} value="wantToRead">Want to Read</option>
+                <option className={read} value="read">Read</option>
+                <option className={none} value="none">None</option>
+            </select>
+        </div>
+    )
+}
 
-        return (
-            <div className="book-shelf-changer">
-                <select onChange={(event) => changeBookShelf(event.target.value, book)} >
-                    <option className="moveTo" value='move' disabled>Move to...</option>
-                    <option className={currentReading} value="currentlyReading">Currently Reading</option>
-                    <option className={wantToRead} value="wantToRead">Want to Read</option>
-                    <option className={read} value="read">Read</option>
-                    <option className={none} value="none" selected>None</option>
-                </select>
-            </div>
-        )
-    }
+ShelfChange.propTypes = {
+    book: PropTypes.array.isRequired,
+    changeBookShelf: PropTypes.func.isRequired,
+    currentlyReading: PropTypes.string.isRequired,
+    wantToRead: PropTypes.string.isRequired,
+    read: PropTypes.string.isRequired,
+    none: PropTypes.string.isRequired
 }
 
 export default ShelfChange

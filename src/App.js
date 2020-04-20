@@ -7,8 +7,7 @@ import MainPage from './components/MainPage'
 
 class App extends React.Component {
   state = {
-    books: [],
-    showSearchPage: false
+    books: []
   }
 
   componentDidMount() {
@@ -20,20 +19,31 @@ class App extends React.Component {
       })
   }
 
-  closeSearch = () => this.setState({ showSearchPage: false })
-
-  addBook = () => this.setState({ showSearchPage: true })
+  changeBookShelf = (shelf, book) => {
+    BooksAPI.update(book, shelf).then(books => {
+      if (shelf === 'none') {
+        this.setState(prevState => ({
+          books: prevState.books.filter(b => b.id !== book.id)
+        }));
+      } else {
+        book.shelf = shelf;
+        this.setState(prevState => ({
+          books: prevState.books.filter(b => b.id !== book.id).concat(book)
+        }));
+      }
+    });
+  }
 
   render() {
     return (
       <Router>
         <div className="app">
           <Switch>
-            <Route exact path='/' render={() => (
-              <MainPage addBook={this.addBook} />
-            )} />
             <Route exact path='/search' render={() => (
-              <SearchPage books={this.state.books} />
+              <SearchPage books={this.state.books} changeShelf={this.changeBookShelf} />
+            )} />
+            <Route exact path='/' render={() => (
+              <MainPage books={this.state.books} changeShelf={this.changeBookShelf} />
             )} />
           </Switch>
         </div>

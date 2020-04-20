@@ -1,36 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import BookItem from './BookItem'
+import PropTypes from 'prop-types'
 
-class Books extends Component {
-    render() {
-        const { books = [], changeShelf } = this.props
-        const listOfBooks = books.length
+const Books = ({ books, changeShelf }) => {
 
-        return (
-            <div>
-                <ol className="books-grid">
-                    {listOfBooks > 0 && books.map(book => {
-                        return book.shelf === 'currentlyReading' ? (
+    const allBooks = books.length
+
+    return (
+        <div>
+            <ol className="books-grid">
+                {allBooks > 0 && books.map(book => {
+                    return book.shelf === 'currentlyReading' ? (
+                        <li key={book.id}>
+                            <BookItem currentlyReading='selected' changeBookShelf={changeShelf} book={book} />
+                        </li>) :
+                        book.shelf === 'wantToRead' ? (
                             <li key={book.id}>
-                                <BookItem currentReading='selected' changeBookShelf={changeShelf} book={book} />
+                                <BookItem wantToRead='selected' changeBookShelf={changeShelf} book={book} />
                             </li>) :
-                            book.shelf === 'wantToRead' ? (
+                            book.shelf === "read" ? (
                                 <li key={book.id}>
-                                    <BookItem wantToRead='selected' changeBookShelf={changeShelf} book={book} />
-                                </li>) :
-                                book.shelf === "read" ? (
+                                    <BookItem read='selected' changeBookShelf={changeShelf} book={book} />
+                                </li>) : (
                                     <li key={book.id}>
-                                        <BookItem read='selected' changeBookShelf={changeShelf} book={book} />
-                                    </li>) : (
-                                        <li key={book.id}>
-                                            <BookItem none='selected' changeBookShelf={changeShelf} book={book} />
-                                        </li>)
-                    }
-                    )}
-                </ol>
-            </div>
-        )
-    }
+                                        <BookItem none='selected' changeBookShelf={changeShelf} book={book} />
+                                    </li>)
+                }
+                )}
+            </ol>
+        </div>
+    )
+}
+
+Books.propTypes = {
+    book: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
 }
 
 export default Books

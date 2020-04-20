@@ -2,26 +2,13 @@ import React, { Component } from 'react'
 import * as BooksAPI from '../utils/BooksAPI'
 import Books from './Books'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class SearchPage extends Component {
 
     state = {
         value: '',
         books: []
-    }
-
-    changeBookShelf = (shelf, book) => {
-        const updatedBook = this.state.books.map(bk => {
-            if (book.id === bk.id) {
-                book.shelf = shelf
-                return book;
-            } else {
-                return bk;
-            }
-        })
-        this.setState(() => ({
-            books: updatedBook
-        }))
     }
 
     updateQuery = (event) => {
@@ -68,11 +55,16 @@ class SearchPage extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <Books books={this.state.books} changeShelf={this.changeBookShelf} />
+                    <Books books={this.state.books} changeShelf={this.props.changeShelf} />
                 </div>
             </div>
         )
     }
+}
+
+SearchPage.propTypes = {
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
 }
 
 export default SearchPage
