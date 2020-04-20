@@ -20,7 +20,6 @@ const Shelves = ({ books, changeShelf }) => {
 }
 
 Shelf.propTypes = {
-    books: PropTypes.array.isRequired,
     changeShelf: PropTypes.func.isRequired
 }
 

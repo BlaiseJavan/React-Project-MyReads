@@ -21,12 +21,12 @@ const BookItem = ({ book, changeBookShelf, currentlyReading, wantToRead, read, n
 }
 
 BookItem.propTypes = {
-    book: PropTypes.array.isRequired,
+    book: PropTypes.object.isRequired,
     changeBookShelf: PropTypes.func.isRequired,
-    currentlyReading: PropTypes.string.isRequired,
-    wantToRead: PropTypes.string.isRequired,
-    read: PropTypes.string.isRequired,
-    none: PropTypes.string.isRequired
+    currentlyReading: PropTypes.string,
+    wantToRead: PropTypes.string,
+    read: PropTypes.string,
+    none: PropTypes.string
 }
 
 export default BookItem
