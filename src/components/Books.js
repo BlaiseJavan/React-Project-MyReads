@@ -12,18 +12,18 @@ const Books = ({ books, changeShelf }) => {
                 {allBooks > 0 && books.map(book => {
                     return book.shelf === 'currentlyReading' ? (
                         <li key={book.id}>
-                            <BookItem currentlyReading='selected' changeBookShelf={changeShelf} book={book} />
+                            <BookItem currentlyReading='selected' changeBookShelf={changeShelf} book={book} shelf='currentlyReading' />
                         </li>) :
                         book.shelf === 'wantToRead' ? (
                             <li key={book.id}>
-                                <BookItem wantToRead='selected' changeBookShelf={changeShelf} book={book} />
+                                <BookItem wantToRead='selected' changeBookShelf={changeShelf} book={book} shelf='wantToRead' />
                             </li>) :
                             book.shelf === "read" ? (
                                 <li key={book.id}>
-                                    <BookItem read='selected' changeBookShelf={changeShelf} book={book} />
+                                    <BookItem read='selected' changeBookShelf={changeShelf} book={book} shelf='read' />
                                 </li>) : (
                                     <li key={book.id}>
-                                        <BookItem none='selected' changeBookShelf={changeShelf} book={book} />
+                                        <BookItem none='selected' changeBookShelf={changeShelf} book={book} shelf='none' />
                                     </li>)
                 }
                 )}
